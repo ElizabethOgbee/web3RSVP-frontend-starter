@@ -14,13 +14,14 @@ function connectContract(){
      const provider = new ethers.providers.Web3Provider(ethereum);
      const signer = provider.getSigner();
      rsvpContract = new ethers.Contract(contractAddress, contractABI, signer); // instantiating new connection to the contract
-   } else {
-     console.log("Ethereum object doesn't exist!");
-   }
- } catch (error) {
-   console.log("ERROR:", error);
- }
- return rsvpContract;
+   
+  } else {
+    throw new Error('Please connect to the Polygon Mumbai network.')
+  }
+} catch (error) {
+  console.log("ERROR:", error);
 }
+ return rsvpContract;
 
+}
 export default connectContract;
